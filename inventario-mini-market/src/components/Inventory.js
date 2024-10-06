@@ -37,10 +37,10 @@ const Inventory = () => {
         : products.filter(product => product.category === filter);
 
     return (
-        <div>
+        <div className="container inventory">
             <h1>Inventario del Mini Market</h1>
             <ProductForm addProduct={addProduct} />
-            <select onChange={(e) => setFilter(e.target.value)}>
+            <select className="filter-select" onChange={(e) => setFilter(e.target.value)}>
                 <option value="Todos">Todos</option>
                 <option value="Alimentos">Alimentos</option>
                 <option value="Bebidas">Bebidas</option>

@@ -1,25 +1,24 @@
 import React, { useState } from "react";
 import ImageUpload from './ImageUpload';
-
 const ProductForm = ({ addProduct }) => {
   const [name, setName] = useState("");
   const [stock, setStock] = useState(0);
-  const [category, setCategory] = useState(""); // Nueva categoría
-  const [cost, setCost] = useState(""); // Campo de costo
+  const [category, setCategory] = useState(""); 
+  const [cost, setCost] = useState(""); 
   const [imageURL, setImageURL] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    addProduct({ name, stock: parseInt(stock, 10), category, cost: parseFloat(cost), imageURL }); // Asegúrate de convertir a float
+    addProduct({ name, stock: parseInt(stock, 10), category, cost: parseFloat(cost), imageURL }); 
     setName("");
     setStock(0);
     setCategory("");
-    setCost(""); // Reinicia el campo de costo
+    setCost("");
     setImageURL('');
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="product-form">
       <input
         type="text"
         placeholder="Nombre del producto"
@@ -35,7 +34,6 @@ const ProductForm = ({ addProduct }) => {
         required
       />
       <ImageUpload onUpload={setImageURL} />
-
       <select
         value={category}
         onChange={(e) => setCategory(e.target.value)}
@@ -47,23 +45,19 @@ const ProductForm = ({ addProduct }) => {
         <option value="Limpieza">Limpieza</option>
         <option value="Otros">Otros</option>
       </select>
-
-      {/* Campo para el costo */}
       <label>
         Precio:
         <input
-          type="number" // Mantener como tipo number
+          type="number"
           placeholder="Costo del producto"
           value={cost}
           onChange={(e) => setCost(e.target.value)}
           required
-          style={{ '-moz-appearance': 'textfield', '-webkit-appearance': 'none', 'appearance': 'none' }} // Eliminar flechas
+          style={{ '-moz-appearance': 'textfield', '-webkit-appearance': 'none', 'appearance': 'none' }}
         />
       </label>
-      <br />
       <button type="submit">Agregar Producto</button>
     </form>
   );
 };
-
 export default ProductForm;

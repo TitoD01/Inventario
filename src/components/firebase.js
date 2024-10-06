@@ -4,14 +4,14 @@ import { getStorage } from "firebase/storage";  // Importar Storage
 
 // Configuración de Firebase para tu app web
 const firebaseConfig = {
-  apiKey: "AIzaSyC22AIoja9elwnDP3YhxcN73sqELBVAtSw",
-  authDomain: "inventariomarket-81418.firebaseapp.com",
+  apiKey: "AIzaSyC2M6WNiuRB-iEFSEEELn7zM7R-FA2jQK0",
+  authDomain: "market-1c81f.firebaseapp.com",
+  projectId: "market-1c81f",
+  storageBucket: "market-1c81f.appspot.com",
+  messagingSenderId: "642867946294",
+  appId: "1:642867946294:web:54f6783379b12502fc0997",
+  measurementId: "G-W8HK2RCE6M",
   databaseURL: "https://inventariomarket-81418-default-rtdb.firebaseio.com",
-  projectId: "inventariomarket-81418",
-  storageBucket: "inventariomarket-81418.appspot.com",
-  messagingSenderId: "617219300234",
-  appId: "1:617219300234:web:0d0f4aa7811e4edde64673",
-  measurementId: "G-R3DSHX18Z1"
 };
 
 // Inicializa Firebase

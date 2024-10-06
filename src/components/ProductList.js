@@ -1,6 +1,12 @@
 import React from 'react';
 
 const ProductList = ({ products, updateStock }) => {
+
+    // Función para formatear el costo a pesos chilenos
+    const formatCurrency = (value) => {
+        return new Intl.NumberFormat('es-CL', { style: 'currency', currency: 'CLP' }).format(value);
+    };
+
     return (
         <ul className="product-list">
             {products.map((product) => (
@@ -15,7 +21,8 @@ const ProductList = ({ products, updateStock }) => {
                         <h3>{product.name}</h3>
                         <p>Categoría: {product.category}</p>
                         <p>Stock: {product.stock}</p>
-                        <p>Costo: ${product.cost ? product.cost.toFixed(2) : 'N/A'}</p>
+                        {/* Usar la función formatCurrency para mostrar el costo en CLP */}
+                        <p>Costo: {product.cost ? formatCurrency(product.cost) : 'N/A'}</p>
                         <input 
                             type="number" 
                             defaultValue={product.stock} 

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import ImageUpload from './ImageUpload';
+
 const ProductForm = ({ addProduct }) => {
   const [name, setName] = useState("");
   const [stock, setStock] = useState(0);
@@ -7,9 +8,28 @@ const ProductForm = ({ addProduct }) => {
   const [cost, setCost] = useState(""); 
   const [imageURL, setImageURL] = useState('');
 
+  // Función para formatear el costo a pesos chilenos
+  const formatCurrency = (value) => {
+    if (!value) return "";
+    return new Intl.NumberFormat('es-CL', { style: 'currency', currency: 'CLP' }).format(value);
+  };
+
+  const handleCostChange = (e) => {
+    const inputCost = e.target.value;
+    // Eliminar cualquier símbolo de peso y formatear el número de nuevo
+    const numericCost = inputCost.replace(/\D/g, "");
+    setCost(numericCost);
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    addProduct({ name, stock: parseInt(stock, 10), category, cost: parseFloat(cost), imageURL }); 
+    addProduct({ 
+      name, 
+      stock: parseInt(stock, 10), 
+      category, 
+      cost: parseFloat(cost), 
+      imageURL 
+    });
     setName("");
     setStock(0);
     setCategory("");
@@ -48,10 +68,10 @@ const ProductForm = ({ addProduct }) => {
       <label>
         Precio:
         <input
-          type="number"
+          type="text"
           placeholder="Costo del producto"
-          value={cost}
-          onChange={(e) => setCost(e.target.value)}
+          value={formatCurrency(cost)} // Mostrar el valor formateado
+          onChange={handleCostChange} // Capturar la entrada del usuario
           required
           style={{ '-moz-appearance': 'textfield', '-webkit-appearance': 'none', 'appearance': 'none' }}
         />
@@ -60,4 +80,5 @@ const ProductForm = ({ addProduct }) => {
     </form>
   );
 };
+
 export default ProductForm;

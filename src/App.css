@@ -37,7 +37,9 @@ h3 {
   max-width: 400px;
 }
 
-.product-form input, .product-form select, .product-form button {
+.product-form input,
+.product-form select,
+.product-form button {
   width: 100%;
   padding: 10px;
   margin: 5px 0;
@@ -87,4 +89,72 @@ h3 {
 
 .filter-select {
   margin: 10px 0;
+}
+
+.search-bar {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.inventory-page {
+  padding: 20px;
+}
+
+/* Estilos para la Página de Inicio */
+.home-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  text-align: center;
+  background-color: #e9ecef; /* Fondo gris claro para la página de inicio */
+  border-radius: 10px; /* Bordes redondeados */
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1); /* Sombra para dar profundidad */
+}
+
+.home-page h1 {
+  color: #333;
+  margin-bottom: 30px;
+  font-size: 2.5rem; /* Tamaño de fuente más grande para el título */
+}
+
+.home-button {
+  margin: 10px;
+  padding: 15px 30px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease; /* Efecto de transición */
+}
+
+.home-button:hover {
+  background-color: #45a049;
+}
+
+.options {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.back-button {
+  background-color: transparent; /* Fondo transparente */
+  border: none; /* Sin borde */
+  color: #007bff; /* Color del texto */
+  cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+  font-size: 16px; /* Tamaño de fuente */
+  margin-top: 20px; /* Espaciado superior */
+  display: flex; /* Alineación flex para la flecha */
+  align-items: center; /* Centrar verticalmente */
+}
+
+.back-button:hover {
+  text-decoration: underline; /* Subrayar al pasar el mouse */
 }

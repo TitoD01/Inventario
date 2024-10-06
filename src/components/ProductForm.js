@@ -1,12 +1,15 @@
 import React, { useState } from "react";
 import ImageUpload from './ImageUpload';
+import { storage } from './firebase';
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
 const ProductForm = ({ addProduct }) => {
   const [name, setName] = useState("");
   const [stock, setStock] = useState(0);
   const [category, setCategory] = useState(""); 
   const [cost, setCost] = useState(""); 
-  const [imageURL, setImageURL] = useState('');
+  const [image, setImage] = useState(null); // Almacena la imagen
+  const [imageURL, setImageURL] = useState(''); // Almacena la URL de la imagen
 
   // Función para formatear el costo a pesos chilenos
   const formatCurrency = (value) => {
@@ -21,19 +24,45 @@ const ProductForm = ({ addProduct }) => {
     setCost(numericCost);
   };
 
-  const handleSubmit = (e) => {
+  const handleImageChange = (file) => {
+    setImage(file);
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    addProduct({ 
-      name, 
-      stock: parseInt(stock, 10), 
-      category, 
-      cost: parseFloat(cost), 
-      imageURL 
-    });
+
+    // Verificar si hay una imagen para subir
+    if (image) {
+      const imageRef = ref(storage, `images/${image.name}`);
+      await uploadBytes(imageRef, image);
+      const url = await getDownloadURL(imageRef);
+      setImageURL(url); // Establece la URL de la imagen
+
+      // Agregar el producto con la URL de la imagen
+      addProduct({ 
+        name, 
+        stock: parseInt(stock, 10), 
+        category, 
+        cost: parseFloat(cost), 
+        imageURL: url // Usa la URL de la imagen cargada
+      });
+    } else {
+      // Agregar el producto sin imagen (si es necesario)
+      addProduct({ 
+        name, 
+        stock: parseInt(stock, 10), 
+        category, 
+        cost: parseFloat(cost), 
+        imageURL: '' // O manejarlo de otra manera
+      });
+    }
+
+    // Reiniciar el formulario
     setName("");
     setStock(0);
     setCategory("");
     setCost("");
+    setImage(null);
     setImageURL('');
   };
 
@@ -53,7 +82,7 @@ const ProductForm = ({ addProduct }) => {
         onChange={(e) => setStock(e.target.value)}
         required
       />
-      <ImageUpload onUpload={setImageURL} />
+      <ImageUpload onUpload={handleImageChange} /> {/* Cambia a usar el nuevo manejador */}
       <select
         value={category}
         onChange={(e) => setCategory(e.target.value)}

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 const ImageUpload = ({ onUpload }) => {
-    const [image, setImage] = useState(null);
+    const [,setImage] = useState(null);
 
     const handleChange = (e) => {
         const file = e.target.files[0];
@@ -12,7 +12,6 @@ const ImageUpload = ({ onUpload }) => {
     return (
         <div>
             <input type="file" accept="image/*" onChange={handleChange} required />
-            {/* Eliminamos el botón de subir imagen */}
         </div>
     );
 };

@@ -9,7 +9,7 @@ import { FaArrowLeft } from 'react-icons/fa'; // Importa el icono de flecha
 const InventoryPage = () => {
   const [products, setProducts] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
-  const [filter, setFilter] = useState("Todos");
+  const [, setFilter] = useState("Todos");
   const navigate = useNavigate(); // Inicializa useNavigate
 
   useEffect(() => {

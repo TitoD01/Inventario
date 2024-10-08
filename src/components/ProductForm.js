@@ -9,7 +9,7 @@ const ProductForm = ({ addProduct }) => {
   const [category, setCategory] = useState(""); 
   const [cost, setCost] = useState(""); 
   const [image, setImage] = useState(null); // Almacena la imagen
-  const [imageURL, setImageURL] = useState(''); // Almacena la URL de la imagen
+  const [, setImageURL] = useState(''); // Almacena la URL de la imagen
 
   // Función para formatear el costo a pesos chilenos
   const formatCurrency = (value) => {
